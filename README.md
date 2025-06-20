@@ -1,0 +1,1 @@
+![Node.js CI](https://github.com/Priori7/heroes-sort/workflows/Node.js%20CI/badge.svg)
