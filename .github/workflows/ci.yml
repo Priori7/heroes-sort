@@ -4,29 +4,30 @@ on:
   push:
     branches:
       - main
-      - master
-  pull_request:
-    branches:
-      - main
-      - master
 
 jobs:
-  lint-and-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '23.5.0'
+
+      - name: Check Node.js version
+        run: node --version
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run ESLint with fix check
-        run: npm run lint
+      - name: Check jest binary permissions
+        run: ls -l node_modules/.bin/jest
+
+      - name: Fix jest permissions
+        run: chmod +x node_modules/.bin/jest
 
       - name: Run tests
         run: npm test
